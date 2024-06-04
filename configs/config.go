@@ -2,12 +2,13 @@ package configs
 
 import (
 	"fmt"
-	"log"
 	"os"
-	
+
 	"github.com/joho/godotenv"
-	
+
 	envAppEnums "name/enums"
+	color "name/enums"
+	"name/extensions"
 )
 
 type DBConfig struct {
@@ -25,7 +26,7 @@ type Config struct {
 func New() *Config {
 	err := godotenv.Load(".env")
 	if err != nil {
-		log.Fatalf("Some error occured. Err: %s", err)
+		extensions.Logger(color.Red, "Some error occured. Err: %s", err)
 	}
 
 	dbUserName 			:= getEnvDBUserName("DB_USER_NAME", "root")
